@@ -52,6 +52,32 @@
   color: var(--purple);
 }
 
+/* NAV HOVER EFFECT */
+.nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(45deg, var(--purple), var(--red));
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--purple);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+
 /* Hamburger */
 .nav-toggle {
   display: none;
@@ -172,13 +198,16 @@
   color: #fff;
   margin-left: 15px;
   font-size: 18px;
+  text-decoration: none; /* ← THIS REMOVES THE UNDERSCORES */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-icons a:hover {
   color: var(--red);
+  transform: translateY(-3px) scale(1.1);
 }
 
-/* ================= RESPONSIVE ================= */
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -191,6 +220,7 @@
     width: 100%;
     background: var(--dark);
     display: none;
+    z-index: 999;
   }
 
   .nav ul {
@@ -198,7 +228,7 @@
     padding: 20px;
   }
 
-  .nav-toggle:checked + .hamburger + .nav {
+  .nav-toggle:checked ~ .nav {
     display: block;
   }
 
@@ -207,6 +237,7 @@
     gap: 15px;
   }
 }
+
 /* ================= ABOUT PAGE ================= */
 
 .about-section {
@@ -249,28 +280,23 @@
 }
 
 /* ================= PAGE INTRO (Gallery & Contact) ================= */
-
 .page-intro {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: center;     /* horizontally center */
+  text-align: center;      /* center text inside */
   margin: 60px auto 40px;
   max-width: 700px;
+  min-height: 200px;       /* adjust to how big you want the intro box */
 }
-
 .page-intro h1 {
   color: var(--purple);
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 2rem;
 }
-
 .page-intro p {
   line-height: 1.7;
   color: #444;
-}
-
-/* ================= GALLERY ================= */
-
-.gallery-grid img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
+  font-size: 1.1rem;
 }
